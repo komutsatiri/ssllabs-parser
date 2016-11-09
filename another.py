@@ -1,7 +1,9 @@
 import lxml.html as LH
 import requests
-heartbleed='//td/*[contains(text(), "Heartbleed (vulnerability)")] | //td[contains(text(), "Heartbleed (vulnerability)")]'
+
+heartbleed='//table[@class = "reportTable"]/descendant::td/*[contains(text(), "Heartbleed (vulnerability)")]/parent::td/following-sibling::td/* | //table[@class = "reportTable"]/descendant::td[contains(text(), "Heartbleed (vulnerability)")]/following-sibling::td'
 worst_page='https://www.ssllabs.com/ssltest/'
+
 worst_response = requests.get(worst_page)
 worst_tree = LH.fromstring(worst_response.content)
 
